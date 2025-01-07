@@ -6,9 +6,9 @@ export enum SchoolActionKind {
   ADD_STUDENT = "ADD_STUDENT",
   UPDATE_STUDENT = "UPDATE_STUDENT",
   ASSIGN_STUDENT_TO_TEACHER = "ASSIGN_STUDENT_TO_TEACHER",
-  ASSIGN_ASSIGNMENT = "ASSIGN_ASSIGNMENT",
-  GRADE_ASSIGNMENT = "GRADE_ASSIGNMENT",
-  GENERATE_REPORT = "GENERATE_REPORT",
+  // ASSIGN_ASSIGNMENT = "ASSIGN_ASSIGNMENT",
+  // GRADE_ASSIGNMENT = "GRADE_ASSIGNMENT",
+  // GENERATE_REPORT = "GENERATE_REPORT",
 }
 
 // Define the shape of the state
@@ -78,44 +78,44 @@ const schoolReducer = (
             : teacher
         ),
       };
-    case SchoolActionKind.ASSIGN_ASSIGNMENT:
-      return {
-        ...state,
-        students: state.students.map((student) =>
-          student.id === action.payload.studentId
-            ? {
-                ...student,
-                assignments: [
-                  ...student.assignments,
-                  {
-                    assignment: action.payload.assignment,
-                    grade: "",
-                    date: new Date().toISOString().split("T")[0],
-                  },
-                ],
-              }
-            : student
-        ),
-      };
-    case SchoolActionKind.GRADE_ASSIGNMENT:
-      return {
-        ...state,
-        students: state.students.map((student) =>
-          student.id === action.payload.studentId
-            ? {
-                ...student,
-                assignments: student.assignments.map((a) =>
-                  a.assignment === action.payload.assignment
-                    ? { ...a, grade: action.payload.grade }
-                    : a
-                ),
-              }
-            : student
-        ),
-      };
-    case SchoolActionKind.GENERATE_REPORT:
-      // This action doesn't modify the state directly, it's handled in the component
-      return state;
+    // case SchoolActionKind.ASSIGN_ASSIGNMENT:
+    //   return {
+    //     ...state,
+    //     students: state.students.map((student) =>
+    //       student.id === action.payload.studentId
+    //         ? {
+    //             ...student,
+    //             assignments: [
+    //               ...student.assignments,
+    //               {
+    //                 assignment: action.payload.assignment,
+    //                 grade: "",
+    //                 date: new Date().toISOString().split("T")[0],
+    //               },
+    //             ],
+    //           }
+    //         : student
+    //     ),
+    //   };
+    // case SchoolActionKind.GRADE_ASSIGNMENT:
+    //   return {
+    //     ...state,
+    //     students: state.students.map((student) =>
+    //       student.id === action.payload.studentId
+    //         ? {
+    //             ...student,
+    //             assignments: student.assignments.map((a) =>
+    //               a.assignment === action.payload.assignment
+    //                 ? { ...a, grade: action.payload.grade }
+    //                 : a
+    //             ),
+    //           }
+    //         : student
+    //     ),
+    //   };
+    // case SchoolActionKind.GENERATE_REPORT:
+    //   // This action doesn't modify the state directly, it's handled in the component
+    //   return state;
     default:
       return state;
   }

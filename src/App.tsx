@@ -18,10 +18,10 @@ function App() {
     string | null
   >(null);
 
-  const [assignment, setAssignment] = useState<string>("");
-  const [grade, setGrade] = useState<string>("");
+  // const [assignment, setAssignment] = useState<string>("");
+  // const [grade, setGrade] = useState<string>("");
 
-  const [report, setReport] = useState<{ id: string; passed: boolean }[]>([]);
+  // const [report, setReport] = useState<{ id: string; passed: boolean }[]>([]);
 
   const handleTeacherSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -63,53 +63,53 @@ function App() {
     setUpdatedStudentName("");
   };
 
-  const handleAssignStudent = () => {
-    if (teacherEditingId && newAssignedStudentId) {
-      schoolDispatch?.({
-        type: SchoolActionKind.ASSIGN_STUDENT_TO_TEACHER,
-        payload: {
-          teacherId: teacherEditingId,
-          studentId: newAssignedStudentId,
-        },
-      });
-    }
+  // const handleAssignStudent = () => {
+  //   if (teacherEditingId && newAssignedStudentId) {
+  //     schoolDispatch?.({
+  //       type: SchoolActionKind.ASSIGN_STUDENT_TO_TEACHER,
+  //       payload: {
+  //         teacherId: teacherEditingId,
+  //         studentId: newAssignedStudentId,
+  //       },
+  //     });
+  //   }
 
-    setTeacherEditingId(null);
-    setNewAssignedStudentId(null);
-  };
+  //   setTeacherEditingId(null);
+  //   setNewAssignedStudentId(null);
+  // };
 
-  const handleAssignAssignment = (studentId: string) => {
-    schoolDispatch?.({
-      type: SchoolActionKind.ASSIGN_ASSIGNMENT,
-      payload: {
-        studentId,
-        assignment,
-      },
-    });
-    setAssignment("");
-  };
+  // const handleAssignAssignment = (studentId: string) => {
+  //   schoolDispatch?.({
+  //     type: SchoolActionKind.ASSIGN_ASSIGNMENT,
+  //     payload: {
+  //       studentId,
+  //       assignment,
+  //     },
+  //   });
+  //   setAssignment("");
+  // };
 
-  const handleGradeAssignment = (studentId: string) => {
-    schoolDispatch?.({
-      type: SchoolActionKind.GRADE_ASSIGNMENT,
-      payload: {
-        studentId,
-        assignment,
-        grade,
-      },
-    });
-    setGrade("");
-  };
+  // const handleGradeAssignment = (studentId: string) => {
+  //   schoolDispatch?.({
+  //     type: SchoolActionKind.GRADE_ASSIGNMENT,
+  //     payload: {
+  //       studentId,
+  //       assignment,
+  //       grade,
+  //     },
+  //   });
+  //   setGrade("");
+  // };
 
-  const handleGenerateReport = (date: string) => {
-    const reportData = school?.students.map((student) => {
-      const passed = student.assignments.some(
-        (a) => a.date === date && a.grade === "Pass"
-      );
-      return { id: student.id, passed };
-    });
-    setReport(reportData || []);
-  };
+  // const handleGenerateReport = (date: string) => {
+  //   const reportData = school?.students.map((student) => {
+  //     const passed = student.assignments.some(
+  //       (a) => a.date === date && a.grade === "Pass"
+  //     );
+  //     return { id: student.id, passed };
+  //   });
+  //   setReport(reportData || []);
+  // };
 
   return (
     <div className="App">
@@ -233,12 +233,12 @@ function App() {
                         onChange={(e) => setAssignment(e.target.value)}
                         placeholder="Assignment"
                       />
-                      <button
+                      {/* <button
                         style={{ color: "red" }}
                         onClick={() => handleAssignAssignment(student.id)}
                       >
                         Assign
-                      </button>
+                      </button> */}
                     </div>
                     <div>
                       <input
@@ -247,12 +247,12 @@ function App() {
                         onChange={(e) => setGrade(e.target.value)}
                         placeholder="Grade (Pass/Fail)"
                       />
-                      <button
+                      {/* <button
                         style={{ color: "red" }}
                         onClick={() => handleGradeAssignment(student.id)}
                       >
                         Grade Assignment
-                      </button>
+                      </button> */}
                     </div>
                   </td>
                 </tr>
@@ -273,7 +273,7 @@ function App() {
           type="date"
           onChange={(e) => handleGenerateReport(e.target.value)}
         />
-        <button
+        {/* <button
           onClick={() => {
             const dateInput = document.querySelector('input[type="date"]');
             if (dateInput) {
@@ -282,9 +282,9 @@ function App() {
           }}
         >
           Generate Report
-        </button>
+        </button> */}
         <ul>
-          {report.map((student) => (
+           {report.map((student) => (
             <li key={student.id}>
               {student.id} - {student.passed ? "Passed" : "Failed"}
             </li>
