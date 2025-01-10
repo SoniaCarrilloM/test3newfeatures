@@ -84,8 +84,8 @@ function App() {
     }));
     setReport(generatedReport);
   };
-    return (
-      <div className="App">
+  return (
+    <div className="App">
       <img src="/infinitas-logo.svg" alt="Infinitas Logo" />
 
       <h1>IL Interview all new features /not refactored (test3newfeatures)</h1>

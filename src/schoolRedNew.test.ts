@@ -13,10 +13,8 @@ describe("schoolReducer", () => {
     });
 
     expect(state.students[0].assignments).toBeDefined();
-    if (state.students[0].assignments) {
-      expect(state.students[0].assignments.length).toBe(1);
-      expect(state.students[0].assignments[0].assignment).toBe("Math Homework");
-    }
+    expect(state.students[0].assignments?.length).toBe(1);
+    expect(state.students[0].assignments?.[0].assignment).toBe("Math Homework");
   });
 
   test("should grade an assignment for a student", () => {
@@ -39,10 +37,9 @@ describe("schoolReducer", () => {
     });
 
     expect(state.students[0].assignments).toBeDefined();
-    if (state.students[0].assignments) {
-      expect(state.students[0].assignments.length).toBe(1);
-      expect(state.students[0].assignments[0].grade).toBe("Pass");
-    }
+    expect(state.students[0].assignments).toBeDefined();
+    expect(state.students[0].assignments?.length).toBe(1);
+    expect(state.students[0].assignments?.[0].grade).toBe("Pass");
   });
 
   test("should generate a report for students", () => {
