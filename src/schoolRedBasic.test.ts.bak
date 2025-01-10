@@ -1,0 +1,62 @@
+import React from "react";
+import { render, fireEvent, screen } from "@testing-library/react";
+import App from "./App";
+import { SchoolProvider } from "./school-context";
+import "@testing-library/jest-dom/extend-expect";
+
+const renderWithProvider = () => {
+  return render(
+    <SchoolProvider>
+      <App />
+    </SchoolProvider>
+  );
+};
+
+test("adds a teacher", () => {
+  renderWithProvider();
+
+  const input = screen.getByLabelText("Teacher") as HTMLInputElement;
+  const button = screen.getByText("Add Teacher");
+
+  fireEvent.change(input, { target: { value: "Teacher One" } });
+  fireEvent.click(button);
+
+  expect(input.value).toBe("");
+  expect(screen.getByText("Teacher One")).toBeInTheDocument();
+});
+
+test("adds a student", () => {
+  renderWithProvider();
+
+  const input = screen.getByLabelText("Student") as HTMLInputElement;
+  const button = screen.getByText("Add Student");
+
+  fireEvent.change(input, { target: { value: "Student One" } });
+  fireEvent.click(button);
+
+  expect(input.value).toBe("");
+  expect(screen.getByText("Student One")).toBeInTheDocument();
+});
+
+test("updates a student", () => {
+  renderWithProvider();
+
+  const input = screen.getByLabelText("Student") as HTMLInputElement;
+  const button = screen.getByText("Add Student");
+
+  fireEvent.change(input, { target: { value: "Student One" } });
+  fireEvent.click(button);
+
+  const updateButton = screen.getByText("Update");
+  fireEvent.click(updateButton);
+
+  const updateInput = screen.getByPlaceholderText(
+    "Update Student Name"
+  ) as HTMLInputElement;
+  fireEvent.change(updateInput, { target: { value: "Updated Student One" } });
+
+  const doneButton = screen.getByText("Done");
+  fireEvent.click(doneButton);
+
+  expect(screen.getByText("Updated Student One")).toBeInTheDocument();
+});

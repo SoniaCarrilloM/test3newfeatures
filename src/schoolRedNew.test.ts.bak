@@ -1,7 +1,7 @@
 import { SchoolActionKind, schoolReducer } from "./school-context";
 
 describe("schoolReducer", () => {
-  it("should assign an assignment to a student", () => {
+  test("should assign an assignment to a student", () => {
     const initialState = {
       teachers: [],
       students: [{ id: "1", name: "Student One", assignments: [] }],
@@ -19,7 +19,7 @@ describe("schoolReducer", () => {
     }
   });
 
-  it("should grade an assignment for a student", () => {
+  test("should grade an assignment for a student", () => {
     const initialState = {
       teachers: [],
       students: [
@@ -45,7 +45,7 @@ describe("schoolReducer", () => {
     }
   });
 
-  it("should generate a report for students", () => {
+  test("should generate a report for students", () => {
     const initialState = {
       teachers: [],
       students: [
