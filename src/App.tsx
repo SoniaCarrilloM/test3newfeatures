@@ -20,6 +20,8 @@ function App() {
   const [assignment, setAssignmentState] = useState<string>("");
   const [grade, setGrade] = useState<string>("");
 
+  const [report, setReport] = useState<{ id: string; passed: boolean }[]>([]);
+
   const handleTeacherSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -72,8 +74,6 @@ function App() {
     }
   };
 
-  const [report, setReport] = useState<{ id: string; passed: boolean }[]>([]);
-
   const handleGenerateReport = (date: string) => {
     // Implement the logic for generating the report based on the date
     console.log(`Generating report for date: ${date}`);
@@ -84,6 +84,7 @@ function App() {
     }));
     setReport(generatedReport);
   };
+
   return (
     <div className="App">
       <img src="/infinitas-logo.svg" alt="Infinitas Logo" />
