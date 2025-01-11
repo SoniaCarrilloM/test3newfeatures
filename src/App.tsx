@@ -133,7 +133,7 @@ function App() {
                           ))}
                         </select>
                         <button
-                          style={{ color: "red" }}
+                          style={{ color: "orange" }}
                           onClick={handleAssignStudent}
                         >
                           Assign
@@ -157,7 +157,9 @@ function App() {
         <form onSubmit={handleTeacherSubmit}>
           <label htmlFor="teacher">Teacher</label>
           <input type="text" id="teacher" name="teacher" />
-          <button type="submit">Add Teacher</button>
+          <button type="submit" style={{ color: "blue" }}>
+            Add Teacher
+          </button>
         </form>
       </div>
 
@@ -188,7 +190,7 @@ function App() {
                           }
                         ></input>
                         <button
-                          style={{ color: "red" }}
+                          style={{ color: "green" }}
                           onClick={handleUpdateStudent}
                         >
                           Done
@@ -212,24 +214,40 @@ function App() {
         <form onSubmit={handleStudentSubmit}>
           <label htmlFor="student">Student</label>
           <input type="text" id="student" name="student" />
-          <button type="submit">Add Student</button>
+          <button type="submit" style={{ color: "blue" }}>
+            Add Student
+          </button>
         </form>
         <div className="section">
           <h2>Assignments</h2>
-          <input
-            type="text"
+          <label htmlFor="assignment">Assignment:</label>
+          <select
+            id="assignment"
             value={assignment}
             onChange={(e) => setAssignmentState(e.target.value)}
-            placeholder="Assignment"
-          />
+          >
+            {" "}
+            <option value="">Select Assignment</option>{" "}
+            <option value="middleAges">🏰 Middle Ages</option>{" "}
+            <option value="industrialRevolution">
+              {" "}
+              🏭 Industrial Revolution
+            </option>{" "}
+          </select>{" "}
         </div>
         <div>
-          <input
-            type="text"
+          {" "}
+          <label htmlFor="grade">Grade:</label>{" "}
+          <select
+            id="grade"
             value={grade}
             onChange={(e) => setGrade(e.target.value)}
-            placeholder="Grade (Pass/Fail)"
-          />
+          >
+            {" "}
+            <option value="">Select Grade</option>{" "}
+            <option value="passed">😊 Passed</option>{" "}
+            <option value="failed">😢 Failed</option>{" "}
+          </select>{" "}
         </div>
       </div>
       <div className="section">
