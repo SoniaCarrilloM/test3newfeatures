@@ -74,13 +74,34 @@ function App() {
     }
   };
 
+  const handleAssignAssignment = (studentId: string) => {
+    schoolDispatch?.({
+      type: SchoolActionKind.ASSIGN_ASSIGNMENT,
+      payload: {
+        studentId,
+        assignment,
+      },
+    });
+    setAssignmentState("");
+  };
+
+  const handleGradeAssignment = (studentId: string) => {
+    schoolDispatch?.({
+      type: SchoolActionKind.GRADE_ASSIGNMENT,
+      payload: {
+        studentId,
+        assignment,
+        grade,
+      },
+    });
+    setGrade("");
+  };
+
   const handleGenerateReport = (date: string) => {
-    // Implement the logic for generating the report based on the date
     console.log(`Generating report for date: ${date}`);
-    // Example logic to set the report
     const generatedReport = school.students.map((student) => ({
       id: student.id,
-      passed: Math.random() > 0.5, // Randomly pass or fail for demonstration
+      passed: Math.random() > 0.5,
     }));
     setReport(generatedReport);
   };
@@ -234,6 +255,12 @@ function App() {
               🏭 Industrial Revolution
             </option>{" "}
           </select>{" "}
+          <button
+            style={{ color: "red" }}
+            onClick={() => handleAssignAssignment(studentEditingId!)}
+          >
+            Assign Assignment
+          </button>
         </div>
         <div>
           {" "}
@@ -248,6 +275,12 @@ function App() {
             <option value="passed">😊 Passed</option>{" "}
             <option value="failed">😢 Failed</option>{" "}
           </select>{" "}
+          <button
+            style={{ color: "red" }}
+            onClick={() => handleGradeAssignment(studentEditingId!)}
+          >
+            Grade Assignment
+          </button>
         </div>
       </div>
       <div className="section">
