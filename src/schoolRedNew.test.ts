@@ -37,7 +37,6 @@ describe("schoolReducer", () => {
     });
 
     expect(state.students[0].assignments).toBeDefined();
-    expect(state.students[0].assignments).toBeDefined();
     expect(state.students[0].assignments?.length).toBe(1);
     expect(state.students[0].assignments?.[0].grade).toBe("Pass");
   });
@@ -79,9 +78,12 @@ describe("schoolReducer", () => {
       return { id: student.id, passed };
     });
 
+    const passedCount = report.filter((student) => student.passed).length;
+
     expect(report).toEqual([
       { id: "1", passed: true },
       { id: "2", passed: false },
     ]);
+    expect(passedCount).toBe(1);
   });
 });

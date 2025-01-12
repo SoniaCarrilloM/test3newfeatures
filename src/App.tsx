@@ -98,12 +98,17 @@ function App() {
   };
 
   const handleGenerateReport = (date: string) => {
-    console.log(`Generating report for date: ${date}`);
-    const generatedReport = school.students.map((student) => ({
-      id: student.id,
-      passed: Math.random() > 0.5,
-    }));
-    setReport(generatedReport);
+    const reportData = school?.students.map((student) => {
+      const passed = student.assignments.some(
+        (a) => a.date === date && a.grade === "pass"
+      );
+      return { id: student.id, passed };
+    });
+
+    const passedCount =
+      reportData?.filter((student) => student.passed).length || 0;
+    console.log(`Number of students who passed on ${date}: ${passedCount}`);
+    setReport(reportData || []);
   };
 
   return (
@@ -296,6 +301,10 @@ function App() {
             </li>
           ))}
         </ul>
+        <div>
+          Number of students who passed:{" "}
+          {report.filter((student) => student.passed).length}
+        </div>
       </div>
     </div>
   );
